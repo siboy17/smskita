@@ -189,13 +189,14 @@ def createWapPduString(start_date, end_date, header, target_num, msg, wap_type):
 
     NUMBER = swapNumber(NUMBER)
 
-    smslen = len(msg) + 69
+    # Sesuaikan kalkulasi panjang pesan (dikurangi byte sisa padding jika perlu)
+    smslen = len(msg) + 66  # Disesuaikan agar panjang oktet pas tanpa sisa
     MSG_LEN_HEX = f"{smslen:02X}"
 
     WAP_PDU_STRING = (
         f"004100{NUMBER_LEN_HEX}91{NUMBER}0004{MSG_LEN_HEX}"
         f"0B05040B84C0020003F001010B060403AE81EA02056A0045C6{wap_type}"
-        f"03{stringToHex(header)}000AC306{start_date}10C306{end_date}0103{stringToHex(msg)}000101"
+        f"03{stringToHex(header)}000AC306{start_date}10C306{end_date}0103{stringToHex(msg)}00"
     )
 
     return WAP_PDU_STRING
