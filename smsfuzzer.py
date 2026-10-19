@@ -14,7 +14,7 @@ from smsfuzzer_funcs import *
 
 # Inisialisasi Serial Port Default
 mySerialPort = serial.Serial()
-mySerialPort.port = "COM4"
+mySerialPort.port = "/dev/ttyUSB0"
 mySerialPort.baudrate = 9600
 mySerialPort.bytesize = serial.EIGHTBITS
 mySerialPort.parity = serial.PARITY_NONE
@@ -51,7 +51,7 @@ class ExampleFrame(wx.Frame):
         self.combo_sms_type.SetSelection(0)
 
         self.lb_target = wx.StaticText(panel, label="Target No:", pos=(5, 65))
-        self.edit_target_number = wx.TextCtrl(panel, size=(135, 30), pos=(80, 65), value='123456789012')
+        self.edit_target_number = wx.TextCtrl(panel, size=(135, 30), pos=(80, 65), value='6282179003599')
 
         self.lb_target_data = wx.StaticText(panel, label="Sms Msg:", pos=(5, 95))
         self.edit_target_msg = wx.TextCtrl(panel, size=(135, 50), pos=(80, 95), value='Hello World', style=wx.TE_MULTILINE)
